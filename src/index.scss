@@ -47,6 +47,15 @@ header {
       cursor: pointer;
       margin-right: 30px;
     }
+
+    .cart {
+      margin-right: 10px;
+    }
+
+    .heart {
+      margin-right: 30px;
+      cursor: pointer;
+    }
   }
 }
 
@@ -66,6 +75,7 @@ header {
   }
 
   .body__search {
+    position: relative;
     display: flex;
     border: 1px solid #f3f3f3;
     border-radius: 10px;
@@ -76,6 +86,13 @@ header {
       padding: 13px;
       font-size: 16px;
       width: 200px;
+    }
+
+    .clear {
+      position: absolute;
+      right: 10px;
+      top: 7px;
+      cursor: pointer;
     }
   }
 
@@ -179,6 +196,7 @@ header {
         margin-bottom: 0;
       }
     }
+
     .greenButton {
       position: relative;
       &:hover {
@@ -189,6 +207,44 @@ header {
       img {
         position: absolute;
         right: 30px;
+        top: 20px;
+        transition: transform 0.2s ease-in-out;
+      }
+    }
+  }
+
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 0;
+
+    .box {
+      margin-bottom: 20px;
+    }
+    .title {
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 27px;
+      margin-bottom: 10px;
+    }
+    .text {
+      font-size: 16px;
+      line-height: 24px;
+      opacity: 0.4;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .return {
+      position: relative;
+      &:hover {
+        img {
+          transform: translateX(5px);
+        }
+      }
+      img {
+        position: absolute;
+        left: 30px;
         top: 20px;
         transition: transform 0.2s ease-in-out;
       }
