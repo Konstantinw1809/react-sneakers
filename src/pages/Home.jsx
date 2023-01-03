@@ -1,3 +1,4 @@
+import React from "react";
 import Card from "../components/Card";
 
 function Home({
@@ -7,7 +8,23 @@ function Home({
   onAddToCartItems,
   onAddToFavorite,
   onChangeSearchInput,
+  isLoading,
 }) {
+  const renderItems = () => {
+    const filtredItems = items.filter((item) =>
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return (isLoading ? [...Array(8)] : filtredItems).map((item, index) => (
+      <Card
+        key={index}
+        {...item}
+        addToFavorite={(obj) => onAddToFavorite(obj)}
+        addToCart={(obj) => onAddToCartItems(obj)}
+        loading={isLoading}
+      />
+    ));
+  };
+
   return (
     <div className="content">
       <div className="content__body">
@@ -15,12 +32,12 @@ function Home({
           {searchValue ? `Поиск по запросу: "${searchValue}"` : "Все кроссовки"}
         </h1>
         <div className="body__search">
-          <img src="/img/search.svg" alt="search" />
+          <img src="img/search.svg" alt="search" />
           {searchValue && (
             <img
               onClick={() => setSearchValue("")}
               className="clear"
-              src="/img/btn-remove.svg"
+              src="img/btn-remove.svg"
               alt="clear"
             />
           )}
@@ -31,20 +48,7 @@ function Home({
           />
         </div>
       </div>
-      <div className="content__row">
-        {items
-          .filter((item) =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((item, index) => (
-            <Card
-              key={index}
-              {...item}
-              addToFavorite={(obj) => onAddToFavorite(obj)}
-              addToCart={(obj) => onAddToCartItems(obj)}
-            />
-          ))}
-      </div>
+      <div className="content__row">{renderItems()}</div>
     </div>
   );
 }
